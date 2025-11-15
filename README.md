@@ -2,27 +2,33 @@
 Desafio: nível novato, primeiros passos na criação do jogo Free Fire, cadastro de itens
 
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
-#define MAX 10
-
-struct Item {
-    char nome[30];
-    char tipo[30];
-    int quantidade;
+struct No {
+    int dado;
+    struct No* proximo;
 };
 
 int main() {
-    struct Item mochila[MAX];
-    int qtd = 0;
-    int opcao;
+    struct No* primeiro = (struct No*) malloc(sizeof(struct No));
+    struct No* segundo = (struct No*) malloc(sizeof(struct No));
+    struct No* terceiro = (struct No*) malloc(sizeof(struct No));
 
-    do {
-        printf("\n===== MOCHILA DE SOBREVIVENCIA =====\n");
-        printf("Itens na mochila: %d/%d\n", qtd, MAX);
-        printf("1. Adicionar Item\n");
-        printf("2. Remover Item\n");
-        printf("3. Listar Itens\n");
-        printf("0. Sair\n");
-        printf("Escolha uma opcao: ");
-        scanf("%d", &opcao);
+    primeiro->dado = 10;
+    primeiro->proximo = segundo;
+
+    segundo->dado = 20;
+    segundo->proximo = terceiro;
+
+    terceiro->dado = 30;
+    terceiro->proximo = NULL;
+
+    // Percorrendo a lista
+    struct No* atual = primeiro;
+    while (atual != NULL) {
+        printf("%d\n", atual->dado);
+        atual = atual->proximo;
+    }
+
+    return 0;
+} 
